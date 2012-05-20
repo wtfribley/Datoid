@@ -1,0 +1,4 @@
+@title: Default
+@description: This is the lightweight default theme for Datoid - it is meant to be altered!
+@thumbnail: theme-example.jpg
+@author: @wtfribley
