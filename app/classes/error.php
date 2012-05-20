@@ -52,16 +52,16 @@ class Error {
                 $trace = $e->getTraceAsString();
                 $contexts = self::context($file, $e->getLine());
 
-                require PATH . 'app/admin/error_php.phtml';
+                require PATH . 'app/admin/errors/error_php.phtml';
             } else {
-                require PATH . 'app/admin/error_500.phtml';
+                require PATH . 'app/admin/errors/error_500.phtml';
             }
         }
         else
         {
             Log::write('warning', $e);
             
-            require PATH . 'app/admin/error_user.phtml';
+            require PATH . 'app/admin/errors/error_user.phtml';
         }
 
         exit(1);

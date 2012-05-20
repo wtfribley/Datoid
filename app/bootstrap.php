@@ -69,7 +69,7 @@ if (Config::load(PATH . 'config.php') === false)
 {
     if(Config::load(PATH . 'config.default.php') === false)
     {
-        require PATH . '/app/admin/error_config.phtml';
+        require PATH . '/app/admin/errors/error_config.phtml';
         exit(1);
     }    
 }

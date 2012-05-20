@@ -74,7 +74,7 @@ class Route {
         
             // Install Page
             case "install":
-                (isset($this->selection['wherevalue'])) ? $path = $this->selection['wherevalue'] : $path = 'index.php';
+                (isset($this->selection['wherevalue'])) ? $path = $this->selection['wherevalue'] : $path = 'install.php';
                 if(file_exists(PATH . 'app/install/' . $path)) {
                     require PATH . 'app/install/' . $path;
                     exit();

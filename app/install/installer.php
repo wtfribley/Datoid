@@ -108,7 +108,7 @@ $userdata = array(
     'username' => $data['adminusername'],
     'password' => Security::GenerateHash($data['adminpassword']),
     'realname' => $data['realname'],
-    'permissions' => 'all'
+    'permissions' => 'admin'
 );
 
 if (DB::insert('users', $userdata) === false)
