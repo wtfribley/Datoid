@@ -25,7 +25,7 @@ class Datoid {
         }
         else if (is_string($options)) {
             // name
-            $this->name($options['name']);            
+            $this->name($options);            
         }
         else {
             Error::user('No name or data passed to the new Datoid.');

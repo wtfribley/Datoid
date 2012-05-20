@@ -17,15 +17,14 @@ $(function(){
         
         db_check_button.attr('disabled','disabled');
        
-        var data = {},
+        var data = '',
             inputs = db_fieldset.find('input');
 
         inputs.each(function(){
-            data[$(this).attr('name')] = $(this).val();
+            data+= $(this).attr('name') + '=' + $(this).val() + '&';
         });
-
-        data = 'json=' + JSON.stringify(data);
-
+        data = data.substring(0,data.length-1);
+        
         // fire off ajax
         $.ajax({
             type: 'POST',
@@ -51,25 +50,6 @@ $(function(){
                 $('#db-check-response').append('<p class="error">'+message+'</p>').fadeIn();
             });
         }
-    }
-    
-    /*
-     *      Submit the Form
-     */
-    var submit = function(){
-        var data = form.serialize();
-        
-        // fire off ajax
-        $.ajax({
-            type: 'POST',
-            url: 'ajax/?install=dbcheck.php',
-            data: data,
-            dataType: 'json',
-            cache: false,
-            success: db_check_result
-        });
-        
-        return false;
     }
     
     // Bindings

@@ -17,4 +17,22 @@
     
 <body>
     
-    <h1><a href="<?= URL::absolute() ?>">Datoid</a><span class="pull-right"><?= $action; ?></span></h1>
+    <h1><a href="<?= URL::absolute() ?>">Datoid</a>
+        
+<?php   if ($page == 'dashboard') {
+            $name = explode(' ', Session::get('realname'));
+?>
+    
+        <span class="pull-right">
+            Hello, <?= $name[0]; ?>!
+            <a class="btn" href="/admin?action=logout">log out</a>
+        </span>
+            
+    
+<?php } else { ?>
+        
+            <span class="pull-right"><?= $page; ?></span>
+        
+<?php } ?>
+    
+    </h1>

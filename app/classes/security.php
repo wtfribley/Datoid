@@ -16,24 +16,31 @@ class Security {
     private static $permits = array('none','author','admin');
     
     public static function HasPermissionOrGreater($level, $usr = null) {
-        
-        (Session::get('permissions')) ? $permit = array_search(Session::get('permissions'), self::$permits) :
-            $permit = false;
-        
+             
         if(is_string($level))
             $level = array_search($level, self::$permits);
         
         if (is_null($usr)) {
-            
-            
-            if ($permit === false || !in_array($level, self::$permits))
+                        
+            (Session::get('permissions')) ? $permit = array_search(Session::get('permissions'), self::$permits) :
+                $permit = false;
+                         
+            if ($permit === false || $level === false)
                 return false;
             
             if ($level > $permit)
                 return false;
+            
+            return true;
         }
-        
-        return true;
+        else {
+            $permit = array_search($usr, self::$permits);
+            
+            if($level > $permit)
+                return false;
+            
+            return true;
+        }      
     }
     
     public static function HasPermission($level, $usr = null) {

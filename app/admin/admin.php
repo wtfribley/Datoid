@@ -6,16 +6,23 @@
 
 // Handle the FIRST visit
 
-if ($first && file_exists(PATH . 'app/install')) {
+if ($action == 'first' && file_exists(PATH . 'app/install')) {
     rename(PATH . 'app/install',PATH . 'app/installed');    
 }
 
+// Handle log out.
 
-// Determine the appropriate action.
+if ($action == 'logout') {
+    Session::end();
+    header('Location: /');
+}
 
-$action = 'login';
-if (Security::HasPermissionOrGreater(1))
-    $action = 'dashboard';
+
+// Determine the appropriate page.
+
+$page = 'login';
+if (Security::HasPermissionOrGreater('author'))
+    $page = 'dashboard';
 
 // Include the proper files.
 
@@ -23,6 +30,6 @@ $includes = PATH . '/app/admin/includes/';
 
 require $includes . 'admin-header.phtml'; 
 
-require $includes . 'admin-' . $action . '.phtml';
+require $includes . 'admin-' . $page . '.phtml';
 
 require $includes . 'admin-footer.phtml';

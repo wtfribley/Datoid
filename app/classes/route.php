@@ -62,8 +62,8 @@ class Route {
             
             // Admin Page
             case "admin":
-                (isset($this->selection['wherefield']) && $this->selection['wherefield'] == 'first' && $this->selection['wherevalue'] == 'true') ?
-                    $first = true : $first = false;
+                (isset($this->selection['wherevalue'])) ? $action = $this->selection['wherevalue'] : $action = false;
+                
                 if(file_exists(PATH . 'app/admin/admin.php')) {
                     require PATH . 'app/admin/admin.php';
                     return;
@@ -86,7 +86,6 @@ class Route {
             // AJAX
             case 'ajax':
                 if(file_exists(PATH . 'app/ajax/' . $this->selection['wherefield'] . '/' . $this->selection['wherevalue'])) {
-                    $json = json_decode(Input::post('json'));
                     require PATH . 'app/ajax/' . $this->selection['wherefield'] . '/' . $this->selection['wherevalue'];
                     return;
                 }

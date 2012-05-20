@@ -6,18 +6,22 @@
 
 $response = array('success'=>false,'messages'=>array());
 
-if($json->dbname === false)
+// Clean Input - probably not needed, but just in case.
+
+$data = Input::clean($_POST);
+
+if($data['dbname'] === false)
     $response['messages'][] = 'Please provide a database name.';
 
-if($json->host === false)
+if($data['host'] === false)
     $response['messages'][] = 'Please provide a host name.';
 
 if(empty($response['messages']))
 {   
     // run test
     try {        
-        $dsn = 'mysql:dbname=' . $json->dbname . ';host=' . $json->host;
-        new PDO($dsn, $json->dbusername, $json->dbpassword);
+        $dsn = 'mysql:dbname=' . $data['dbname'] . ';host=' . $data['host'];
+        new PDO($dsn, $data['dbusername'], $data['dbpassword']);
         $response['success'] = true;
     }
     catch(PDOException $e) {

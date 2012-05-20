@@ -155,7 +155,7 @@ else {
         where you can sign in and get started!
     </p>
     <p class="textcenter">
-        <a class="btn btn-success" href="/admin?first=true" title="Finish!">Finish!</a>
+        <a class="btn btn-success" href="/admin?action=first" title="Finish!">Finish!</a>
     </p>
     
 </div>

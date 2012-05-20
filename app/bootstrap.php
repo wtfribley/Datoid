@@ -97,7 +97,7 @@ $route = new Route($url);
 /*
  *      Close out the Session
  */
-Session::end();
+//Session::end();
 
 /*
  *      Send it all to the Browser

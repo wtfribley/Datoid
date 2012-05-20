@@ -8,6 +8,14 @@ class DB {
     
     private static $dbh = null;
     
+    /**
+     * $data should be in the form array('field'=>'value','field'=>'value')
+     *  
+     * @param string $table
+     * @param array $data
+     * @return bool 
+     */
+    
     public static function insert($table,$data = array()) {
         
         $sql = 'INSERT INTO ' . $table . ' (';
@@ -38,7 +46,7 @@ class DB {
         
         if($result) {
             $results = array();
-        
+            Log::write('testing', $sql);
             foreach(self::$dbh->query($sql) as $row) {
                 $results[] = $row;
             }
