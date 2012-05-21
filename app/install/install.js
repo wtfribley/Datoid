@@ -47,7 +47,7 @@ $(function(){
             db_check_button.removeClass('btn-success').addClass('btn-warning').html('Check Database Connection');
             
             $.each(response.messages, function(i, message){
-                $('#db-check-response').append('<p class="error">'+message+'</p>').fadeIn();
+                $('#db-check-response').append('<p class="align-center">'+message+'</p>').fadeIn();
             });
         }
     }

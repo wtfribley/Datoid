@@ -9,15 +9,18 @@
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="stylesheet" href="<?= URL::absolute('/css/main.css'); ?>">
-    <link rel="stylesheet" href="<?= URL::relative(__FILE__,'../admin.css'); ?>">
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>');</script>
+    
+    <script src="<?= URL::absolute('/js/form-validation.js'); ?>"></script>
 </head>
     
 <body>
     
-    <h1><a href="<?= URL::absolute() ?>">Datoid</a>
+    <div class="sticky-wrapper">
+    
+    <header><a href="<?= URL::absolute() ?>" class="monospace inverted-textcolor"><strong>Datoid</strong></a>
         
 <?php   if ($page == 'dashboard') {
             $name = explode(' ', Session::get('realname'));
@@ -25,7 +28,7 @@
     
         <span class="pull-right">
             Hello, <?= $name[0]; ?>!
-            <a class="btn" href="/admin?action=logout">log out</a>
+            <a class="btn btn-small" href="/admin?action=logout">log out</a>
         </span>
             
     
@@ -35,4 +38,4 @@
         
 <?php } ?>
     
-    </h1>
+    </header>

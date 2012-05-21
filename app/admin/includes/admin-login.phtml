@@ -1,12 +1,12 @@
-<div class="content">
+<section class="content sticky-main" style="margin-top: 120px;">
     
-<h2>Login</h2>
+<h1 class="align-center">Login</h1>
 
-<form method="post" novalidate="custom">
+<hr />
+
+<form method="post" novalidate="custom" style="width: 280px;">
 
     <fieldset class="cf" id="database-info">
-
-        <hr style="margin-bottom: 60px" />
         
         <div class="input-group cf">
             <input id="testes" type="text" name="username" autocorrect="off" autocapitalize="off" placeholder="Username" required>                  
@@ -15,30 +15,19 @@
             <input type="password" name="password" placeholder="Password" required>                  
         </div>
         
-        <button class="btn btn-success btn-center" type="submit" style="margin-top: 20px;" disabled>Login</button>
-           
-        <hr style="margin-top: 60px" />
+        <div class="input-group">
+            <button class="btn btn-success btn-center" type="submit" style="margin-top: 20px;" disabled>Login</button>  
+        </div>
         
     </fieldset>
     
 </form>
 
-</div>
+<hr />
+
+</section>
 
 <script>
-        
-$('input').on('blur', function(){
-    var valid = this.validity.valid;
-    valid ? $(this).removeClass('invalid') : $(this).addClass('invalid');
-}).on('keyup', function(){
-    var valid = this.validity.valid;
-    valid ? $(this).removeClass('invalid') : $(this).addClass('invalid');
-    
-    var form = document.getElementsByTagName('form');
-    form[0].checkValidity() ?
-        $('button[type="submit"]').removeAttr('disabled') :
-        $('button[type="submit"]').attr('disabled','disabled');
-});
     
 $('form').on('submit', function(){
     

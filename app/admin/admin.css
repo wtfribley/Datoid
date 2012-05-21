@@ -74,6 +74,9 @@ h1 span {
 }
 
 h1 .btn {
+    position: relative;
+    top: -2px;
+    
     margin-left: 20px;
     
     padding-top: 0px;

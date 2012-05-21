@@ -9,15 +9,80 @@
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="stylesheet" href="<?= URL::absolute('/css/main.css'); ?>">
-    <link rel="stylesheet" href="<?= URL::relative(__FILE__,'install.css'); ?>">
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>');</script>
     <script src="<?= URL::relative(__FILE__,'install.js'); ?>"></script>
 </head>
     
-<body>   
-    <h1><a href="<?= URL::absolute() ?>">Datoid</a></h1>
+<body>
+    
+    <style>
+        input, select { float: right;}
+
+        dl {
+            margin: 40px 0;
+        }
+
+        dt {
+            padding: 4px 8px;
+
+            color: #fafafa;
+            border-top: 1px solid #000;
+            background-color: #3f3d3a;
+
+            -webkit-border-top-left-radius: 6px;
+            -webkit-border-top-right-radius: 6px;
+            -moz-border-radius-topleft: 6px;
+            -moz-border-radius-topright: 6px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+
+            -moz-box-shadow: inset 0px -6px 12px -6px #000;
+            -webkit-box-shadow: inset 0px -6px 12px -6px #000;    
+            box-shadow: inset 0px -6px 12px -6px #000;
+        }
+
+        dd {
+            margin: 0;
+            padding: 8px 0 12px 60px;
+
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            background-color: #eee;
+
+            -webkit-border-bottom-right-radius: 6px;
+            -webkit-border-bottom-left-radius: 6px;
+            -moz-border-radius-bottomright: 6px;
+            -moz-border-radius-bottomleft: 6px;
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+        
+        #db-check-response {
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+
+            background-color: #fff;
+            border: 1px solid  #b94a48;
+
+            -webkit-box-shadow: 0 0 6px #f8b9b7;
+            -moz-box-shadow: 0 0 6px #f8b9b7;
+            box-shadow: 0 0 6px #f8b9b7;
+
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+        }
+    </style>
+    
+    <div class="sticky-wrapper">
+    
+    <header>
+        <a href="<?= URL::absolute() ?>" class="monospace inverted-textcolor"><strong>Datoid</strong></a>
+        <span class="pull-right">Install</span>
+    </header>
     
 <?php
 
@@ -50,7 +115,7 @@
     
     if(count($compat_warnings)): ?>
     
-    <div class="content">
+    <section class="content sticky-main" style="margin-top: 120px;">
         <h2>Oops!</h2>
 
         <p>Datoid seems to be missing some requirements:</p>
@@ -61,8 +126,8 @@
             <?php endforeach; ?>
         </dl>
 
-        <p class="textcenter"><a href="./install" class="btn btn-success">Ok, I've fixed these, run the installer.</a></p>
-    </div>
+        <p class="align-center"><a href="./install" class="btn btn-success">Ok, I've fixed these, run the installer.</a></p>
+    </section>
     
 <?php 
 
@@ -71,13 +136,15 @@
      */
     elseif(file_exists(PATH . 'config.php')): ?>
     	
-    <div class="content">
-        <h2>Oops!</h2>
-
-        <p>Datoid is already installed. Delete the "install" folder to prevent users from seeing this warning!</p>
-
-        <p><a href="<?= URL::absolute(); ?>" class="button" style="float: none; display: inline-block;">Return to the main site.</a></p>
-    </div>
+    <section class="content sticky-main" style="margin-top: 160px;">
+        <h2 class="align-center">Oops!</h2>
+        
+        <hr />
+        <p>Datoid is already installed. Delete (or rename) the <code>install</code> folder to prevent users from seeing this warning!</p>
+        <hr />
+        
+        <a href="<?= URL::absolute(); ?>" class="btn btn-center" style="width: 160px;">Return to the main site.</a>
+    </section>
     	
 <?php 
     
@@ -86,8 +153,9 @@
      */
     else: ?>
     
-    <div class="content">
-        <h2>Datoid <small>Installer</small></h2>
+    <section class="content sticky-main" style="margin-top: 60px; margin-bottom: 60px;">
+        <h1 class="align-center">Datoid <small>Installer</small></h1>
+        <hr />
         
         <dl>
             <dt><span class="monospace">Datoid</dt>
@@ -117,7 +185,7 @@
         <small>If you'd like to do this manually, feel free to edit <code>config.default.php</code> 
         and rename it to <code>config.php</code> - then be sure to delete the install folder.</small>    
         
-        <form method="post" action="install/installer.php" novalidate="custom">
+        <form method="post" action="install/installer.php" novalidate="custom" style="width: 560px; margin-top: 30px;">
             
             <fieldset class="cf" id="database-info">
                 <legend>Your Database Information<small class="pull-right"><em>your web host will have this info</em></small></legend>
@@ -139,11 +207,11 @@
                 </div>
                 
                 <div class="input-group cf textcenter">
-                    <a id="db-check" class="btn btn-warning">Check Database Connection</a>
+                    <a id="db-check" class="btn btn-warning btn-center" style="width: 200px;">Check Database Connection</a>
                 </div>
                 
                 <div id="db-check-response" class="textcenter">
-                    <p>Oops!</p>
+                    <h2 class="align-center">Oops!</h2>
                 </div>
             </fieldset>
             
@@ -154,14 +222,14 @@
                     <input name="site-name" placeholder="My Datoid Site">
                 </div>
                 <div class="input-group cf">
-                    <label class="textcenter" for="site-name">site description</label>
-                    <textarea name="site-description"></textarea>                 
+                    <label class="align-center" for="site-name" style="margin-bottom: 12px;">site description</label>
+                    <textarea name="site-description" style="height: 100px;"></textarea>                 
                 <hr />
                 </div>
                 <!-- themes section -->
                 
                 <div class="input-group cf">
-                    <label class="textcenter">starting theme</label>
+                    <label class="align-center">starting theme</label>
                     <ul class="accordion unstyled">
 <?php
                 foreach(glob(PATH . 'themes/*') as $theme):
@@ -184,7 +252,6 @@
 ?>                   
                     </ul>
                     <input type="hidden" name="theme" value="default" />
-                <hr />
                 </div> <!-- end themes section -->
                 
                 <div class="input-group cf">
@@ -192,8 +259,7 @@
                     <input type="email" name="email" placeholder="admin@yoursite.com" />                 
                 </div>
                 <div class="input-group cf">
-                    <label class="inline" for="site-path">site path:</label>
-                    <a class="info pull-right" style="margin: 4px 0 0 15px;"></a>
+                    <label class="inline" for="site-path">site path:</label>                  
                     <input type="text" name="site-path" value="<?= dirname($_SERVER['SCRIPT_NAME']); ?>" />            
                 </div>
                 <div class="input-group cf">
@@ -240,7 +306,7 @@
                 
                 <hr />
                 
-                <p><small>Finally, you will use this username and password to log into the admin area of Datoid</small></p>
+                <p class="align-center" style="margin-bottom: 30px;">You will use this username and password to log into the admin area of Datoid.</p>
                 <div class="input-group cf">
                     <label class="inline" for="adminusername">admin username:</label>
                     <input name="adminusername" placeholder="admin" />
@@ -256,14 +322,18 @@
                 
             </fieldset>
             
-            <button class="btn btn-success btn-center" type="submit">Install <span class="monospace">Datoid</span></button>                 
+            <button class="btn btn-success btn-center" type="submit" style="width: 140px;margin-top: 30px;">Install <span class="monospace">Datoid</span></button>                 
         
         </form>    
-    </div>
+    </section>
     
 <?php endif; ?>
     
-<footer></footer>
+</div> <!-- sticky-wrapper -->
+        
+<footer class="sticky-footer">
+    
+</footer>
     
 </body>
 </html>
