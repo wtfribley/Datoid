@@ -72,28 +72,30 @@ if(file_put_contents($config_path, $config)) {
 
 Config::load($config_path);
 
-// CREATE OUR FIRST TWO DATOIDS (and the only Datoids that are mandatory)
+// CREATE OUR FIRST THREE DATOIDS (and the only Datoids that are mandatory)
 
+// metadata
 new Datoid(array(
     'name' => 'metadata',
     'fields' => array(
-        'site_name' => 'varchar(64)',
-        'site_description' => 'text',
-        'theme' => 'varchar(64)',
-        'site_email' => 'varchar(255)'
+        'name' => 'varchar(32) null',
+        'data' => 'text null'
     )
 ));
 
-$metadata = array(
+$site_metadata = array(
     'site_name' => $data['site-name'],
     'site_description' => $data['site-description'],
     'theme' => $data['theme'],
     'site_email' => $data['email']
 );
 
+$metadata = array('name'=>'site', 'data'=>serialize($site_metadata));
+
 if (DB::insert('metadata', $metadata) === false)
     $errors[] = "Could not add site metadata.";
 
+// users
 new Datoid(array(
     'name' => 'users',
     'fields' => array(
@@ -113,6 +115,17 @@ $userdata = array(
 
 if (DB::insert('users', $userdata) === false)
     $errors[] = "Could not create user data.";
+
+// sessions
+new Datoid(array(
+    'name' => 'sessions',
+    'fields' => array(
+        'id' => 'varchar(32)',
+        'date' => 'int(11)',
+        'data' => 'text',
+        'history' => 'text'
+    )
+));
 
 
 // Display Responses

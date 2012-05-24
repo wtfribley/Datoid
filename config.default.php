@@ -21,6 +21,9 @@ return array(
         'base_url' => '/',
         'index_page' => 'index.php',
         
+        // number of history steps
+        'history_steps' => 10,
+        
         // timezone
         'timezone' => 'UTC'       
     ),
@@ -28,7 +31,7 @@ return array(
     // Session Details
     'session' => array(
         'name' => 'datoid',
-        'expire' => 3600,
+        'expire' => 86400,
         'path' => '/',
         'domain' => ''
     ),

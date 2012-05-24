@@ -16,7 +16,7 @@ class DB {
      * @return bool 
      */
     
-    public static function insert($table,$data = array()) {
+    public static function insert($table,$data) {
         
         $sql = 'INSERT INTO ' . $table . ' (';
         
@@ -38,6 +38,24 @@ class DB {
         $stmt = self::prep($sql);
         
         return $stmt->execute(array_values($data));       
+    }
+    
+    public static function update($table, $data, $where) {
+        $sql = "UPDATE " . $table . " SET ";
+        
+        foreach(array_keys($data) as $field) {
+            $sql.= $field . "=?, ";
+        }
+        $sql = rtrim($sql, ', ');
+        
+        $sql.= " WHERE " . key($where) . "=?";
+        
+        $bindings = array_values($data);
+        $bindings[] = current($where);
+        
+        $stmt = self::prep($sql);
+        
+        return $stmt->execute($bindings);
     }
     
     public static function query($sql, $result = true) {

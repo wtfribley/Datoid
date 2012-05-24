@@ -33,7 +33,7 @@ elseif (!Security::HasPermissionOrGreater('author', $permissions))
     $response['error'] = 'unauth';
 else {
    
-    Session::regenerate();
+    Session::regenerate(false);
     Session::set('permissions', $permissions);
     Session::set('realname', $user->data('realname'));
     

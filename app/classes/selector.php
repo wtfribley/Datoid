@@ -17,11 +17,14 @@ class Selector {
         if(is_array($options) && !empty($options)) {
             
             // table
-            $this->datoid($options['datoid']);
+            if(isset($options['datoid'])) {
+                $this->datoid($options['datoid']);
+            }
             
             // where
-            if(isset($options['wherefield']) && isset($options['wherevalue']))
+            if(isset($options['wherefield']) && isset($options['wherevalue'])) {
                 $this->where($options['wherefield'],$options['wherevalue']);
+            }
             
             // order
             if(isset($options['order'])) {
@@ -124,16 +127,24 @@ class Selector {
         }       
         elseif (count($results) === 1) {
             $results = $results[0];
-        }        
-               
+        }
+                      
         $this->data = $results;
     }
     
     public function data($field = null) {
         if(is_null($field))       
             return $this->data;
-        elseif(array_key_exists($field, $this->data))
-            return $this->data[$field];
+        elseif(array_key_exists($field, $this->data)) {
+            
+            // unserialize fails on empty arrays - help it out a bit
+            if($this->data[$field] == 'a:0:{}')
+                $this->data[$field] = array();
+            
+            // unserialize data if need be
+            return (is_string($this->data[$field]) && @unserialize($this->data[$field])) ? 
+                unserialize($this->data[$field]) : $this->data[$field];
+        }
         else
             return false;
     }

@@ -45,7 +45,9 @@ class Datoid {
     public function add_fields($fields = array()) {
         if(!empty($fields)) {
             
-            $table_fields = 'id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ';
+            (array_key_exists('id', $fields)) ?
+                $table_fields = 'id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ' :
+                $table_fields = '';
             
             foreach($fields as $field => $type) {
                 

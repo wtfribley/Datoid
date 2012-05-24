@@ -1,0 +1,27 @@
+<?php defined("PRIVATE") or die("Permission Denied. Cannot Access Directly."); 
+
+require PATH . 'app/admin/includes/admin-header.phtml';
+
+?>
+
+<section class="content sticky-main" style="margin-top: 120px;">
+    <h2 class="align-center">This is not the page you're looking for.</h2>
+    <hr />
+
+    <p>The page you requested doesn't seem to exist on this site.</p>
+    <p>You can try searching for it below, <a href="<?= Link::back(); ?>" title="Back">go back</a>, or just <a href="<?= Link::home(); ?>" title="Home">go home</a>.</p>
+    <p class="monospace"><small>Code: 404</small></p>
+    
+    <!-- @todo: make this work once search has been built -->
+    <form method="post" action="" onsubmit="return false;" style="width: 320px; margin-top: 60px;">
+        <div class="input-group cf">
+            <input type="text" class="search-field" name="search-query" placeholder="type and hit enter to search this site" />
+        </div>
+    </form>
+</section>
+
+<?php
+
+require PATH . 'app/admin/includes/admin-footer.phtml';
+
+?>

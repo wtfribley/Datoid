@@ -80,23 +80,6 @@ class URL {
         if($return)
             return self::$url_processed;      
     }
-
-    public static function relative($rel, $uri = '')
-    {
-        $path = pathinfo($rel, PATHINFO_DIRNAME);
-        $path = str_replace(PATH, '', $path) . '/' . $uri;
-        $path = str_replace(array('//','\\'), '/', $path);
-        
-        return '/' . $path;
-    }
-    
-    public static function absolute($uri = '')
-    {
-        $path = Input::server('http_host') . '/' . $uri;
-        $path = 'http://' . ltrim(str_replace(array('//','\\'), '/', $path),'/');
-        
-        return $path;
-    }
     
     public static function raw()
     {

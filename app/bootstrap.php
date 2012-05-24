@@ -78,28 +78,37 @@ if (Config::load(PATH . 'config.php') === false)
 date_default_timezone_set(Config::get('app.timezone'));
 
 /*
- *      Start the Session
- */
-Session::start();
-
-/*
- *      Process the Requested URL
+ *     1. Process the Requested URL
  */
 
 $url = URL::process();
 
 /*
- *      Route the URL
+ *     2. Start the Session
+ */
+
+Session::start();
+
+/*
+ *     3. Start buffering the Response
+ */
+
+Response::start();
+
+/*
+ *     4. Route the URL
  */
 
 $route = new Route($url);
 
 /*
- *      Close out the Session
+ *     5. Close the Session (setting cookies and saving to the DB)
  */
-//Session::end();
+
+Session::end();
 
 /*
- *      Send it all to the Browser
+ *     6. Flush the compressed buffer out to the browser
  */
+
 Response::send();

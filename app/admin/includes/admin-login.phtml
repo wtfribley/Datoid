@@ -1,3 +1,9 @@
+<?php defined("PRIVATE") or die("Permission Denied. Cannot Access Directly."); 
+
+require $includes . 'admin-header.phtml';
+
+?>
+
 <section class="content sticky-main" style="margin-top: 120px;">
     
 <h1 class="align-center">Login</h1>
@@ -45,7 +51,7 @@ $('form').on('submit', function(){
                 
                 // reload on success
                 if(response.success === true) {
-                    window.location = window.location;
+                    window.location = '/admin?a=dashboard';
                 }
                 
                 // display errors
@@ -61,3 +67,9 @@ $('form').on('submit', function(){
 });
 
 </script>
+
+<?php
+
+require $includes . 'admin-footer.phtml';
+
+?>

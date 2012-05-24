@@ -30,6 +30,10 @@ class Input {
         return $default;
     }
     
+    public static function cookie($key, $default = false) {
+        return self::fetch_array($_COOKIE, $key, $default);
+    }
+    
     public static function get($key, $default = false)
     {
         return self::fetch_array($_GET, $key, $default);

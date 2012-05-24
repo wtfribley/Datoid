@@ -62,7 +62,13 @@ class Route {
             
             // Admin Page
             case "admin":
-                (isset($this->selection['wherevalue'])) ? $action = $this->selection['wherevalue'] : $action = false;
+                if(isset($this->selection['wherevalue']))
+                    $action = $this->selection['wherevalue'];
+                else {
+                    // hard redirect.
+                    header('Location: /admin?a=dashboard');
+                    exit();
+                }
                 
                 if(file_exists(PATH . 'app/admin/admin.php')) {
                     require PATH . 'app/admin/admin.php';
